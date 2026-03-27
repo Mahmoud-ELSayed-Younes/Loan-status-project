@@ -281,11 +281,7 @@ This project is licensed under the **MIT License** - see [LICENSE](LICENSE) for 
 
 * LinkedIn: [mahmoud-el-sayed-a3b545264](https://www.linkedin.com/in/mahmoud-el-sayed-a3b545264/)
 * Email: [mahmoud3lsayed@gmail.com](mailto:mahmoud3lsayed@gmail.com)
-* GitHub: [@mahmoud3lsayed](https://github.com/mahmoud3lsayed)
 
-Project Link: [[https://github.com/mahmoud3lsayed/loan-status-project]([https://github.com/Mahmoud-ELSayed-Younes/Loan-status-project](https://github.com/Mahmoud-ELSayed-Younes/Loan-status-project))](https://github.com/mahmoud3lsayed/loan-status-project)
-
----
 
 ## 🙏 Acknowledgments
 
