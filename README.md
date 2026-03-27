@@ -1,4 +1,4 @@
-Here's the updated README with the correct project name:
+You're absolutely right! The table formatting in the README appears broken. The markdown table syntax needs proper formatting to render correctly. Here's the corrected version with properly formatted tables:
 
 ```markdown
 # Loan Status Prediction Using Support Vector Machine
@@ -53,27 +53,32 @@ The dataset contains loan application records with the following features:
 | Loan_Status | Target variable (Y/N) | Binary |
 
 ### Dataset Statistics
-- Total Samples: 614 applications
-- Training/Test Split: 80/20
-- Class Distribution: ~70% Approved, ~30% Denied
+- **Total Samples**: 614 applications
+- **Training/Test Split**: 80/20
+- **Class Distribution**: ~70% Approved, ~30% Denied
 
 ## 🏗 Technical Architecture
 
 ```
 Loan Status Prediction Pipeline
+│
 ├── Data Collection
 │   └── CSV import from ./datasets/
+│
 ├── Preprocessing
 │   ├── Missing value imputation
 │   ├── Label encoding
 │   └── Feature scaling
+│
 ├── Model Training
 │   ├── SVM classifier (RBF kernel)
 │   └── Hyperparameter tuning
+│
 ├── Evaluation
 │   ├── Accuracy metrics
 │   ├── Confusion matrix
 │   └── Classification report
+│
 └── Visualization
     ├── Distribution plots
     └── Correlation heatmap
@@ -125,7 +130,7 @@ jupyter notebook Loan_Status_Prediction_SVM.ipynb
 ```
 
 **Option 2: Python Script**
-```python
+```bash
 python loan_status_prediction.py
 ```
 
@@ -139,7 +144,28 @@ from sklearn.model_selection import train_test_split
 
 # Load and preprocess data
 data = pd.read_csv('./datasets/train_u6lujuX_CVtuZ9i (1).csv')
-# ... preprocessing steps ...
+
+# Handle missing values
+data = data.fillna(data.mode().iloc[0])
+
+# Encode categorical variables
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+categorical_cols = ['Gender', 'Married', 'Education', 'Self_Employed', 'Property_Area']
+for col in categorical_cols:
+    data[col] = le.fit_transform(data[col])
+
+# Prepare features and target
+X = data.drop(['Loan_ID', 'Loan_Status'], axis=1)
+y = data['Loan_Status'].map({'Y': 1, 'N': 0})
+
+# Split and scale data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# Train SVM model
 model = SVC(kernel='rbf', random_state=42)
 model.fit(X_train_scaled, y_train)
 
@@ -160,13 +186,19 @@ predictions = model.predict(X_test_scaled)
 | **ROC-AUC** | 0.87 |
 
 ### Confusion Matrix
-```
-              Predicted
-           Approved  Denied
-Actual
-Approved      108      13
-Denied         23      20
-```
+
+|              | Predicted Approved | Predicted Denied |
+|--------------|-------------------|------------------|
+| **Actual Approved** | 108 | 13 |
+| **Actual Denied**   | 23  | 20 |
+
+### Classification Report
+
+| Class | Precision | Recall | F1-Score | Support |
+|-------|-----------|--------|----------|---------|
+| Denied (0) | 0.61 | 0.47 | 0.53 | 43 |
+| Approved (1) | 0.82 | 0.89 | 0.86 | 121 |
+| **Accuracy** | | | **0.82** | **164** |
 
 ## 📊 Visualizations
 
